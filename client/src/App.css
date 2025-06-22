@@ -1,0 +1,442 @@
+/* General Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif; /* Modern, clean font */
+    background: #121212; /* Darkest background for the body */
+    color: #E0E0E0; /* Light gray for general text */
+    overflow: hidden; /* Prevent body scroll if content overflows */
+}
+
+/* App Container */
+.app {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1A1A2E; /* Slightly lighter dark background for the app */
+}
+
+/* Login Box */
+.login-box {
+    background: #252640; /* Darker accent for login box */
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* Deeper shadow for depth */
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.login-box h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #00BFA5; /* Accent color for headings */
+    font-weight: 600;
+}
+
+.login-box input {
+    background: #3A3B50; /* Input background */
+    color: #E0E0E0;
+    border: 1px solid #4F506C; /* Subtle border */
+    border-radius: 8px;
+    padding: 0.9rem 1.2rem;
+    width: 280px;
+    margin: 1.2rem 0;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-box input::placeholder {
+    color: #A0A0A0;
+}
+
+.login-box input:focus {
+    border-color: #00BFA5; /* Accent border on focus */
+    box-shadow: 0 0 0 3px rgba(0, 191, 165, 0.3); /* Glow effect */
+}
+
+.login-box button {
+    background: #00BFA5; /* Accent color for buttons */
+    color: #1A1A2E; /* Dark text on accent button */
+    padding: 0.9rem 2.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 191, 165, 0.3);
+}
+
+.login-box button:hover {
+    background: #00897B; /* Darker accent on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.login-box button:active {
+    transform: translateY(0);
+}
+
+/* Chat Wrapper (Main Chat Layout) */
+.chat-wrapper {
+    display: flex;
+    width: 90vw; /* Take up more width */
+    max-width: 1200px; /* Max width for large screens */
+    height: 90vh; /* Max height for the chat interface */
+    background: #252640; /* Main container background */
+    border-radius: 20px; /* More rounded corners for the entire app */
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5); /* Prominent shadow */
+    overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px; /* Slightly wider sidebar */
+    background: #1A1A2E; /* Darker background for sidebar */
+    padding: 1.5rem;
+    border-right: 1px solid #3A3B50; /* Subtle separator */
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    color: #00BFA5; /* Accent color */
+    border-bottom: 1px solid #3A3B50; /* Separator for title */
+    padding-bottom: 0.8rem;
+    font-weight: 600;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1; /* Allows the list to take available space */
+    overflow-y: auto; /* Scroll for many users */
+}
+
+.sidebar li {
+    padding: 0.6rem 0;
+    color: #B0B0B0; /* Slightly desaturated for non-self users */
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between dot and name */
+}
+
+.sidebar li::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #00BFA5; /* Online indicator color */
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.sidebar li.self {
+    font-weight: bold;
+    color: #E0E0E0; /* Brighter for self */
+}
+
+.sidebar li.self::before {
+    background: #E0E0E0; /* Different color for self indicator */
+}
+
+
+/* Chat Container */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #2D2F44; /* Slightly different background for main chat area */
+}
+
+/* Chat Header */
+header {
+    background: #3A3B50; /* Header background */
+    padding: 1.2rem;
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #00BFA5; /* Accent color for header title */
+    border-bottom: 1px solid #4F506C; /* Subtle border */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Ensure shadow is visible over chat box */
+}
+
+/* Chat Box (Messages Area) */
+.chat-box {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between messages */
+    scroll-behavior: smooth;
+    /* Custom Scrollbar (Webkit browsers) */
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #2D2F44;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #4F506C;
+        border-radius: 10px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: #6C6E85;
+    }
+}
+
+/* Message Bubble */
+.message {
+    background: #4A4C62; /* Default message bubble background */
+    padding: 0.8rem 1.2rem;
+    border-radius: 20px; /* More rounded bubbles */
+    max-width: 75%; /* Slightly larger max width */
+    word-wrap: break-word;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    position: relative; /* For timestamp positioning */
+    align-self: flex-start; /* Default alignment */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.message span.sender {
+    font-weight: bold;
+    color: #00BFA5; /* Sender name accent */
+    margin-bottom: 5px;
+    display: block; /* Ensures sender is on its own line */
+    font-size: 0.85rem;
+}
+
+.message span.timestamp {
+    font-size: 0.7rem;
+    color: #A0A0A0; /* Subtle timestamp */
+    margin-top: 5px;
+    display: block;
+    text-align: right; /* Align timestamp to the right within the bubble */
+}
+
+
+.message.own {
+    background: #00BFA5; /* Accent color for own messages */
+    color: #1A1A2E; /* Dark text on own message */
+    align-self: flex-end; /* Align own messages to the right */
+    border-bottom-right-radius: 5px; /* Different corner for own */
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+}
+
+.message.own span.sender {
+    color: #1A1A2E; /* Sender name dark on accent background */
+}
+
+.message.own span.timestamp {
+    color: #5C5F6A; /* Subtle dark timestamp on own message */
+}
+
+/* Typing Indicator */
+.typing {
+    color: #B0B0B0; /* Subtle color */
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-left: 10px; /* Indent slightly */
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between text and dots */
+    margin-top: 5px;
+    padding-bottom: 10px; /* Space above the input */
+}
+
+.dots {
+    display: flex;
+    align-items: center;
+}
+
+.dots::before, .dots::after {
+    content: '';
+    width: 6px; /* Smaller dots */
+    height: 6px;
+    background: #B0B0B0;
+    border-radius: 50%;
+    margin: 0 2px;
+    display: inline-block;
+    animation: blink 1.2s infinite ease-in-out;
+}
+
+.dots::before {
+    animation-delay: 0s;
+}
+
+.dots::after {
+    animation-delay: 0.4s; /* Staggered blink */
+}
+
+/* Add a third dot explicitly for a three-dot effect */
+.dots span {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #B0B0B0;
+    border-radius: 50%;
+    margin: 0 2px;
+    display: inline-block;
+    animation: blink 1.2s infinite ease-in-out;
+    animation-delay: 0.8s;
+}
+
+
+@keyframes blink {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+/* Chat Footer (Input Area) */
+footer {
+    display: flex;
+    padding: 1.2rem 1.5rem;
+    background: #3A3B50; /* Footer background */
+    border-top: 1px solid #4F506C; /* Subtle border */
+    gap: 10px; /* Space between input and button */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+footer input {
+    flex: 1;
+    background: #4F506C; /* Input background */
+    color: #E0E0E0;
+    border: none;
+    border-radius: 8px;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+footer input::placeholder {
+    color: #A0A0A0;
+}
+
+footer input:focus {
+    background: #5C5F6A; /* Slightly lighter on focus */
+}
+
+footer button {
+    background: #00BFA5; /* Accent button color */
+    color: #1A1A2E;
+    padding: 0.9rem 1.8rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0, 191, 165, 0.3);
+}
+
+footer button:hover {
+    background: #00897B;
+    transform: translateY(-2px);
+}
+
+footer button:active {
+    transform: translateY(0);
+}
+
+.chat-image, .chat-video {
+  max-width: 100%; 
+  height: 200px;
+  border-radius: 8px;
+  margin-top: 5px;
+}
+
+.upload-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-right: 10px; /* Space it out from the input field */
+}
+
+.upload-button:hover {
+  background-color: #0056b3;
+}
+
+.emoji-button {
+  background-color: #f0f0f0; /* Light gray background */
+  color: #333; /* Dark text color */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-right: 10px;
+  display: flex; /* To center the emoji */
+  align-items: center;
+  justify-content: center;
+}
+
+.emoji-button:hover {
+  background-color: #e0e0e0;
+}
+
+.emoji-picker-container {
+  position: absolute; /* Position relative to .chat-container or .chat-wrapper */
+  bottom: 60px; /* Adjust this value to position it above the footer */
+  right: 10px; /* Adjust as needed */
+  z-index: 1000; /* Ensure it's on top of other elements */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden; /* Important for picker's internal borders */
+}
+
+/* Ensure footer has relative positioning if emoji-picker-container is absolute */
+.chat-container footer {
+    position: relative; /* This is important for positioning the emoji picker correctly */
+    display: flex;
+    padding: 10px;
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+}
+
+/* Loader Styles */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-style: italic;
+  color: #888;
+  margin: 10px 0; /* Add some margin around the loader */
+}
+
+.loader::after {
+  content: '';
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
