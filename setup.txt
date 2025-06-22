@@ -1,0 +1,4 @@
+Required npm packages:
+
+Run below command initially
+{npm i express cors socket.io multer path fluent-ffmpeg}
