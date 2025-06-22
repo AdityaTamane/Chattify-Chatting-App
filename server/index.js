@@ -7,19 +7,6 @@ const path = require('path');
 const fs = require('fs');
 const ffmpeg = require('fluent-ffmpeg'); // Import fluent-ffmpeg
 
-// Set FFmpeg path if it's not in your system's PATH
-// IMPORTANT: Uncomment and set these paths if ffmpeg is not globally accessible
-// These paths are examples; adjust them based on your OS and FFmpeg installation.
-// For macOS (Homebrew):
-// ffmpeg.setFfmpegPath('/usr/local/bin/ffmpeg');
-// ffmpeg.setFfprobePath('/usr/local/bin/ffprobe');
-// For Linux (e.g., Ubuntu/Debian):
-// ffmpeg.setFfmpegPath('/usr/bin/ffmpeg');
-// ffmpeg.setFfprobePath('/usr/bin/ffprobe');
-// For Windows, point to your ffmpeg.exe and ffprobe.exe paths:
-// ffmpeg.setFfmpegPath('C:\\path\\to\\ffmpeg\\bin\\ffmpeg.exe');
-// ffmpeg.setFfprobePath('C:\\path\\to\\ffmpeg\\bin\\ffprobe.exe');
-
 const onlineUsers = new Map();
 
 const app = express();
